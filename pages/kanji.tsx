@@ -5,7 +5,7 @@ import {Section} from '../components/layout/Section'
 const Kanji: NextPage = () => {
   return (
     <div>
-      <Hero/>
+      <Hero user="Dang Hoang" email="dang.hoang.geo@gmail.com"/>
       <Section title="Kanji" description="N2 Kanji">
       </Section>
     </div>
