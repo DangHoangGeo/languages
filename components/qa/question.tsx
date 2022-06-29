@@ -73,6 +73,8 @@ const Question = ({question, next}:Props) => {
                 <DialogContentText id="alert-dialog-description">
                    {grammar.english}
                 </DialogContentText>
+                <div className="mt-4 p-4 bg-slate-500 text-gray-200 rounded-lg dark:text-slate-200"
+                            dangerouslySetInnerHTML={{ __html: grammar.use.html }}/>
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleClose}>Close</Button>

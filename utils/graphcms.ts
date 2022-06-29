@@ -81,6 +81,9 @@ export async function getAllQuizByLevel(learner: string[], level: ILevel, previe
                         id
                         japanese
                         english
+                        use{
+                            html
+                        }
                         sentences {
                             japanese
                             pronounce
