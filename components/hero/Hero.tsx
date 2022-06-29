@@ -5,7 +5,12 @@ import { Button } from '../Button'
 import { Section } from '../layout/Section'
 import { Logo } from './Logo';
 
-const Hero = () => (
+type Props = {
+  user: string
+  email: string
+}
+
+const Hero = ({user, email}:Props) => (
   <Background color="bg-gray-100">
     <Section yPadding="py-6">
     <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
@@ -122,9 +127,8 @@ const Hero = () => (
           />
 
           <p className="hidden ml-2 text-xs text-left sm:block">
-            <strong className="block font-medium">Dang Hoang</strong>
-
-            <span className="text-gray-500"> dang.hoang.geo@gmail.com </span>
+            <strong className="block font-medium">{user}</strong>
+            <span className="text-gray-500">{email}</span>
           </p>
 
           <svg
