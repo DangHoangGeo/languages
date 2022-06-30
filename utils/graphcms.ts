@@ -92,7 +92,7 @@ export async function getPreviewPostBySlug(slug: string) {
 
 export async function getAllQuizByLevel(learner: string, level: ILevel, preview: boolean) {
     const data = await fetchAPI(`
-        query getQuizes($learner: ID!, , $level: Level, $stage: Stage!) {
+        query getQuizes($learner: ID!, $level: Level, $stage: Stage!) {
             quizzes(where: {learners_none: {id_not: $learner}, level: $level}, stage: $stage) {
                 id
                 question
@@ -136,8 +136,50 @@ export async function getAllQuizByLevel(learner: string, level: ILevel, preview:
     return data
 }
 
+export async function getAllGrammarByLevel(learner: string, level: ILevel,first: number, preview: boolean) {
+    const data = await fetchAPI(`
+        query getGrammars($learner: ID! , $level: Level, $stage: Stage!, $first: Int!) {
+            grammars(where: {level: $level},
+                orderBy: createdAt_ASC,
+                first: $first
+                ) {
+                japanese
+                level
+                id
+                english
+                use {
+                  markdown
+                }
+                vietnamese
+                sentences {
+                  japanese
+                  pronounce
+                  english
+                }
+            },
+            learner(where: {id: $learner}, stage: $stage){
+                name
+                email
+                image{
+                    url
+                }
+            }
+        }
+    `
+    ,{
+        preview,
+        variables: {
+            learner,
+            stage: preview ? 'DRAFT' : 'PUBLISHED',
+            level,
+            first
+        },
+    }
+    )
+    return data
+}
 
-export async function getPostAndMorePosts(slug: string, preview: boolean) {
+export async function getGrammarAndMoreGrammar(slug: string, preview: boolean) {
     const data = await fetchAPI(
         `
         query PostBySlug($slug: String!, $stage: Stage!) {
