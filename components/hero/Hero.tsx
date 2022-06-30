@@ -1,16 +1,16 @@
-import Link from 'next/link';
-
+import Link from 'next/link'
+import Image from 'next/image'
 import { Background } from '../Background'
 import { Button } from '../Button'
 import { Section } from '../layout/Section'
 import { Logo } from './Logo';
+import {IUser} from '../../types/user'
 
 type Props = {
-  user: string
-  email: string
+  user: IUser
 }
 
-const Hero = ({user, email}:Props) => (
+const Hero = ({user}:Props) => (
   <Background color="bg-gray-100">
     <Section yPadding="py-6">
     <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
@@ -120,15 +120,17 @@ const Hero = ({user, email}:Props) => (
           type="button"
           className="flex items-center transition rounded-lg group shrink-0"
         >
-          <img
+          <Image
             className="object-cover w-10 h-10 rounded-full"
-            src="/IMG_1968.jpg"
+            width={36}
+            height={36}
+            src={user.image.url}
             alt="Dang Hoang"
           />
 
           <p className="hidden ml-2 text-xs text-left sm:block">
-            <strong className="block font-medium">{user}</strong>
-            <span className="text-gray-500">{email}</span>
+            <strong className="block font-medium">{user.name}</strong>
+            <span className="text-gray-500">{user.email}</span>
           </p>
 
           <svg

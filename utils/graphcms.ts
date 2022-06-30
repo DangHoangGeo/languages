@@ -9,7 +9,7 @@ type variablesType = {
     locales?: [string]
     first?: number
     orderBy?: string
-    learner?: string[]
+    learner?: string
 }
 
 interface Props {
@@ -48,6 +48,29 @@ async function fetchAPI(query: string, {variables, preview}: Props = {}){
     return json.data
 }
 
+// Fetch User profile
+export async function getUserProfile(id: string, preview: boolean){
+    const data = fetchAPI(
+        `
+        query userById($id: ID!, $stage: Stage!){
+            learner(where: {id: $id}, stage: $stage){
+                name
+                email
+                image{
+                    url
+                }
+            }
+        }
+        `,{
+            variables:{
+                id: id,
+                stage: preview ? 'DRAFT' : 'PUBLISHED',
+            }
+        }
+    )
+    return data
+}
+
 // Fetch Post
 export async function getPreviewPostBySlug(slug: string) {
     const data = await fetchAPI(
@@ -67,10 +90,10 @@ export async function getPreviewPostBySlug(slug: string) {
     return data.post
 }
 
-export async function getAllQuizByLevel(learner: string[], level: ILevel, preview: boolean) {
+export async function getAllQuizByLevel(learner: string, level: ILevel, preview: boolean) {
     const data = await fetchAPI(`
-        query getQuizes($learner: [ID!], $level: Level, $stage: Stage!) {
-            quizzes(where: {learners_none: {id_not_in: $learner}, level: $level}, stage: $stage) {
+        query getQuizes($learner: ID!, , $level: Level, $stage: Stage!) {
+            quizzes(where: {learners_none: {id_not: $learner}, level: $level}, stage: $stage) {
                 id
                 question
                 answers {
@@ -90,6 +113,13 @@ export async function getAllQuizByLevel(learner: string[], level: ILevel, previe
                             english
                         }
                     }
+                }
+            },
+            learner(where: {id: $learner}, stage: $stage){
+                name
+                email
+                image{
+                    url
                 }
             }
         }
