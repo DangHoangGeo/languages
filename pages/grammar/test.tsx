@@ -1,21 +1,21 @@
 import type { NextPage } from 'next'
 import * as React from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import {Hero} from '../components/hero/Hero'
-import {Section} from '../components/layout/Section'
+import Layout from '../../components/layout/Layout'
+import {Section} from '../../components/layout/Section'
 import Pagination from '@mui/material/Pagination'
-import Question from '../components/qa/question'
-import {getAllQuizByLevel} from '../utils/graphcms'
-import {IQuiz} from '../types/quiz'
-import {IUser} from '../types/user'
-import { LEANERID } from '../utils/constants'
+import Question from '../../components/qa/question'
+import {getAllQuizByLevel} from '../../utils/graphcms'
+import {IQuiz} from '../../types/quiz'
+import {IUser} from '../../types/user'
+import { LEANERID } from '../../utils/constants'
 
 type Props = {
   quizes: IQuiz[]
   user: IUser
 }
 
-const Grammar: NextPage<Props> = ({quizes, user}) => {
+const GrammarTest: NextPage<Props> = ({quizes, user}) => {
   const [slected, setSelected] = React.useState(1);
   const [isNext, setIsNext] = React.useState(false);
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -23,8 +23,7 @@ const Grammar: NextPage<Props> = ({quizes, user}) => {
     setIsNext(true);
   };
   return (
-    <div>
-      <Hero user={user}/>
+    <Layout>
       <Section title="N2 grammar testing" description="N2 grammar testing">
         <div className="flex flex-col justify-center">
           <div className="flex justify-center">
@@ -47,7 +46,7 @@ const Grammar: NextPage<Props> = ({quizes, user}) => {
           </div>
         </div>
       </Section>
-    </div>
+    </Layout>
   )
 }
 
@@ -56,4 +55,4 @@ export async function getServerSideProps() {
   return { props:{quizes: data.quizzes, user: data.learner }}
 }
 
-export default Grammar
+export default GrammarTest
