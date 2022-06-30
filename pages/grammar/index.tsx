@@ -28,22 +28,19 @@ const Grammar: NextPage<Props> = ({grammars, user}) => {
       <div className="gap-4 justify-center">
            <div className="flex justify-center">
             <div className="indicator max-w-lg">
-                <div className="indicator-item indicator-bottom">
-                    <button className="btn btn-primary">Example</button>
-                </div> 
-                <div className="card border">
+                <div className="card border shadow-md">
                     <div className="card-body space-y-4">
                         <h2 className="card-title">{grammar.japanese}</h2> 
                         <p>{grammar.english}</p>
-                        <pre><code>{grammar.use.markdown}</code></pre>
+                        <div className="mt-4 p-4 bg-slate-500 text-gray-200 rounded-lg dark:text-slate-200"><code>{grammar.use.markdown}</code></div>
                         <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
                             <input type="checkbox" className="peer" /> 
                             <div className="collapse-title font-medium">
-                                Click to see Sentences
+                                Example
                             </div>
                             <div className="collapse-content space-y-2"> 
                                 {grammar.sentences.map((sen, idx)=>(
-                                    <div className="border p-4 border-base-300 bg-base-100 rounded-box" key={idx}>
+                                    <div className="border p-2 border-base-300 bg-base-100 rounded-box" key={idx}>
                                         <p >{sen.japanese}</p>
                                         <p>{sen.english}</p>
                                     </div>
@@ -54,7 +51,7 @@ const Grammar: NextPage<Props> = ({grammars, user}) => {
                 </div>
             </div>
             </div>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8">
             <Pagination count={grammars.length} variant="outlined" onChange={handleChange} color="secondary" />
             </div>
         </div>
@@ -64,7 +61,7 @@ const Grammar: NextPage<Props> = ({grammars, user}) => {
 }
 
 export async function getServerSideProps() {
-  const data = await getAllGrammarByLevel(LEANERID, "N2", 10, false)
+  const data = await getAllGrammarByLevel(LEANERID, "N2", 50, false)
   return { props:{grammars: data.grammars, user: data.learner }}
 }
 
