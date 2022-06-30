@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import * as React from 'react'
-import Question from '../components/qa/question'
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import {Hero} from '../components/hero/Hero'
 import {Section} from '../components/layout/Section'
 import Pagination from '@mui/material/Pagination'
+import Question from '../components/qa/question'
 import {getAllQuizByLevel} from '../utils/graphcms'
 import {IQuiz} from '../types/quiz'
 import {IUser} from '../types/user'
@@ -25,8 +26,19 @@ const Grammar: NextPage<Props> = ({quizes, user}) => {
     <div>
       <Hero user={user}/>
       <Section title="N2 grammar testing" description="N2 grammar testing">
-        
         <div className="flex flex-col justify-center">
+          <div className="flex justify-center">
+            <CountdownCircleTimer
+                  isPlaying
+                  size={48}
+                  strokeWidth={4}
+                  duration={90}
+                  colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+                  colorsTime={[80, 40, 30, 10]}
+              >
+                  {({ remainingTime }) => <p className="text-xl text-red-700">{remainingTime}</p>}
+              </CountdownCircleTimer>
+          </div>
           <div className="flex justify-center">
             <Question next={isNext} question={quizes[slected-1]}/>
           </div>
