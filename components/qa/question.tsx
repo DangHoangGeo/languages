@@ -18,7 +18,7 @@ const sgrammar: IGrammar = {
     "id": "",
     "japanese": "",
     "explain": "",
-    "use": {html: ""},
+    "use": {html: "", markdown: ""},
     "english": "",
     "vietnamese": "",
     "chinese": "",
