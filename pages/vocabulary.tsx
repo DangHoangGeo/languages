@@ -20,7 +20,7 @@ const Vocabulary: NextPage<Props> = ({user}) => {
 
 export async function getServerSideProps() {
   const data = await getUserProfile(LEANERID,false)
-  return { user: data.learner }
+  return { props:{ user: data.learner }}
 }
 
 export default Vocabulary
