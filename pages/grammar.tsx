@@ -41,7 +41,7 @@ const Grammar: NextPage<Props> = ({quizes, user}) => {
 
 export async function getServerSideProps() {
   const data = await getAllQuizByLevel(LEANERID, "N2",false)
-  return { quizes: data.quizzes, user: data.learner  }
+  return { props:{quizes: data.quizzes, user: data.learner }}
 }
 
 export default Grammar
