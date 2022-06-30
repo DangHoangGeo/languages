@@ -4,7 +4,7 @@ export interface IGrammar {
     id: string
     japanese: string
     explain: string
-    use: {html: string}
+    use: {html: string, markdown: string}
     english: string
     vietnamese: string
     chinese: string

@@ -18,7 +18,7 @@ const sgrammar: IGrammar = {
     "id": "",
     "japanese": "",
     "explain": "",
-    "use": {html: ""},
+    "use": {html: "", markdown: ""},
     "english": "",
     "vietnamese": "",
     "chinese": "",
@@ -34,11 +34,17 @@ const Question = ({question, next}:Props) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAnswer(parseInt(event.target.value));
-        setGrammar(question.answers[parseInt(event.target.value)].grammar);
-        console.log(grammar);
-        setOpen(true);
+        if(question.answers[parseInt(event.target.value)].grammar){
+            setGrammar(question.answers[parseInt(event.target.value)].grammar);
+            setOpen(true);
+        }
     };
     const handleClose = () => {
+        setOpen(false);
+    };
+
+    //TODO: 
+    const handleGotit = () => {
         setOpen(false);
     };
 
@@ -71,14 +77,14 @@ const Question = ({question, next}:Props) => {
                 </DialogTitle>
                 <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                   {grammar.english}
+                {grammar.english}
                 </DialogContentText>
                 <div className="mt-4 p-4 bg-slate-500 text-gray-200 rounded-lg dark:text-slate-200"
                             dangerouslySetInnerHTML={{ __html: grammar.use.html }}/>
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleClose}>Close</Button>
-                <Button onClick={handleClose} autoFocus>
+                <Button onClick={handleGotit} autoFocus>
                     Got
                 </Button>
                 </DialogActions>
