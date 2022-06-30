@@ -2,6 +2,7 @@ export const LEANERID = 'cl4zfpqcv229u0cy94o2027l8'
 
 export const href_home = '/'
 export const href_grammar = '/grammar'
+export const href_grammar_test = '/grammar/test'
 export const href_vocabulary = '/vocabulary'
 export const href_kanji = '/kanji'
 export const href_conversation = '/conversation'
@@ -15,5 +16,6 @@ export const navigations = [
     { name: "Kanji", href: href_kanji },
     { name: "Excercise", href: href_excercise },
     { name: "Conversation", href: href_conversation },
-    { name: "Aboutus", href: href_aboutus}
+    { name: "Aboutus", href: href_aboutus},
+    {name:"Grammar test", href: href_grammar_test},
 ];
