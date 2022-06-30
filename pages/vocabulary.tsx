@@ -1,15 +1,26 @@
 import type { NextPage } from 'next'
 import {Hero} from '../components/hero/Hero'
 import {Section} from '../components/layout/Section'
+import {getUserProfile} from '../utils/graphcms'
+import {IUser} from '../types/user'
+import {LEANERID} from '../utils/constants'
 
-const Kanji: NextPage = () => {
+type Props = {
+  user: IUser
+}
+const Vocabulary: NextPage<Props> = ({user}) => {
   return (
     <div>
-      <Hero user="Dang Hoang" email="dang.hoang.geo@gmail.com"/>
-      <Section title="Goi" description="N2 Goi">
+      <Hero user={user}/>
+      <Section title="Vocabulary" description="New Vocabulary daily">
       </Section>
     </div>
   )
 }
 
-export default Kanji
+Vocabulary.getInitialProps = async({ req }) => {
+  const data = await getUserProfile(LEANERID,false)
+  return { user: data.learner }
+}
+
+export default Vocabulary
