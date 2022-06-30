@@ -18,7 +18,7 @@ const Vocabulary: NextPage<Props> = ({user}) => {
   )
 }
 
-Vocabulary.getInitialProps = async({ req }) => {
+export async function getServerSideProps() {
   const data = await getUserProfile(LEANERID,false)
   return { user: data.learner }
 }

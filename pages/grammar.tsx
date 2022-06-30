@@ -39,7 +39,7 @@ const Grammar: NextPage<Props> = ({quizes, user}) => {
   )
 }
 
-Grammar.getInitialProps = async ({ req }) => {
+export async function getServerSideProps() {
   const data = await getAllQuizByLevel(LEANERID, "N2",false)
   return { quizes: data.quizzes, user: data.learner  }
 }

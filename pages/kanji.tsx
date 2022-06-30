@@ -18,7 +18,7 @@ const Kanji: NextPage<Props> = ({user}) => {
   )
 }
 
-Kanji.getInitialProps = async({ req }) => {
+export async function getServerSideProps() {
   const data = await getUserProfile(LEANERID,false)
   return { user: data.learner }
 }
