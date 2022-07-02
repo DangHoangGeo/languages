@@ -17,11 +17,12 @@ interface Props {
     preview?: boolean
 }
 
-async function fetchAPI(query: string, {variables, preview}: Props = {}){
+export async function fetchAPI(query: string, {variables, preview}: Props = {}){
     const res = await fetch(process.env.GRAPHCMS_PROJECT_API||"", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
             Authorization: `Bearer ${
                 preview
                 ? process.env.GRAPHCMS_DEV_AUTH_TOKEN
@@ -136,16 +137,25 @@ export async function getAllQuizByLevel(learner: string, level: ILevel, preview:
     return data
 }
 
+/**
+ * 
+ * @param learner 
+ * @param level 
+ * @param first 
+ * @param preview 
+ * @returns 
+ */
+
 export async function getAllGrammarByLevel(learner: string, level: ILevel,first: number, preview: boolean) {
     const data = await fetchAPI(`
         query getGrammars($learner: ID! , $level: Level, $stage: Stage!, $first: Int!) {
-            grammars(where: {level: $level},
+            grammars(where: {learners_none: {id: $learner},level: $level},
                 orderBy: createdAt_ASC,
                 first: $first
                 ) {
+                id
                 japanese
                 level
-                id
                 english
                 use {
                   markdown
@@ -156,6 +166,7 @@ export async function getAllGrammarByLevel(learner: string, level: ILevel,first:
                   pronounce
                   english
                 }
+                learners{ id }
             },
             learner(where: {id: $learner}, stage: $stage){
                 name
@@ -178,6 +189,13 @@ export async function getAllGrammarByLevel(learner: string, level: ILevel,first:
     )
     return data
 }
+
+/**
+ * 
+ * @param slug 
+ * @param preview 
+ * @returns 
+ */
 
 export async function getGrammarAndMoreGrammar(slug: string, preview: boolean) {
     const data = await fetchAPI(
