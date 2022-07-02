@@ -18,11 +18,6 @@ interface Props {
 }
 
 export async function fetchAPI(query: string, {variables, preview}: Props = {}){
-    const aquery = JSON.stringify({
-        query,
-        variables
-    });
-    console.log(aquery);
     const res = await fetch(process.env.GRAPHCMS_PROJECT_API||"", {
         method: 'POST',
         headers: {
@@ -39,8 +34,6 @@ export async function fetchAPI(query: string, {variables, preview}: Props = {}){
             variables,
         }),
     })
-
-    console.log(res)
 
     const json = await res.json()
 
