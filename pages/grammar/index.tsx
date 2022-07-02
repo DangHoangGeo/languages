@@ -48,7 +48,7 @@ const Grammar: NextPage<Props> = ({ grammars, user }) => {
           <div className="flex justify-center">
             <div className="indicator min-h-fit max-w-lg">
                 <div className="indicator-item indicator-top">
-                    <Button onClick={handleRemember} className="btn">Got</Button>
+                    <Button onClick={handleRemember} className="btn btn-accent">Got</Button>
                 </div> 
               <div className="card border shadow-md">
                 <div className="card-body space-y-4">
@@ -86,7 +86,7 @@ const Grammar: NextPage<Props> = ({ grammars, user }) => {
 }
 
 export async function getServerSideProps() {
-  const data = await getAllGrammarByLevel(LEANERID, "N2", 10, false)
+  const data = await getAllGrammarByLevel(LEANERID, "N2", 20, false)
   return { props: { grammars: data.grammars, user: data.learner } }
 }
 

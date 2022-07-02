@@ -91,10 +91,12 @@ export async function getPreviewPostBySlug(slug: string) {
     return data.post
 }
 
-export async function getAllQuizByLevel(learner: string, level: ILevel, preview: boolean) {
+export async function getAllQuizByLevel(learner: string, level: ILevel,first: number, preview: boolean) {
     const data = await fetchAPI(`
-        query getQuizes($learner: ID!, $level: Level, $stage: Stage!) {
-            quizzes(where: {learners_none: {id_not: $learner}, level: $level}, stage: $stage) {
+        query getQuizes($learner: ID!, $level: Level, $stage: Stage!, $first: Int!) {
+            quizzes(where: {learners_none: {id_not: $learner}, level: $level}, 
+                first: $first,
+                stage: $stage) {
                 id
                 question
                 answers {
@@ -130,7 +132,8 @@ export async function getAllQuizByLevel(learner: string, level: ILevel, preview:
         variables: {
             learner,
             stage: preview ? 'DRAFT' : 'PUBLISHED',
-            level
+            level,
+            first
         },
     }
     )

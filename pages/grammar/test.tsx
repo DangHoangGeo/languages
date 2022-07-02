@@ -51,7 +51,7 @@ const GrammarTest: NextPage<Props> = ({quizes, user}) => {
 }
 
 export async function getServerSideProps() {
-  const data = await getAllQuizByLevel(LEANERID, "N2",false)
+  const data = await getAllQuizByLevel(LEANERID, "N2", 50,false)
   return { props:{quizes: data.quizzes, user: data.learner }}
 }
 
