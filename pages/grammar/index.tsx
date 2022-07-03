@@ -1,6 +1,5 @@
 import type { NextPage } from "next"
 import * as React from "react"
-import Button from '@mui/material/Button'
 import Pagination from "@mui/material/Pagination"
 import Layout from "../../components/layout/Layout"
 import FaqsCard from "../../components/FaqsCard"
@@ -48,7 +47,7 @@ const Grammar: NextPage<Props> = ({ grammars, user }) => {
           <div className="flex justify-center">
             <div className="indicator min-h-fit max-w-lg">
                 <div className="indicator-item indicator-top">
-                    <Button onClick={handleRemember} className="btn btn-accent">Got</Button>
+                    <button onClick={handleRemember} className="btn btn-outline btn-accent">Got</button>
                 </div> 
               <div className="card border shadow-md">
                 <div className="card-body space-y-4">
