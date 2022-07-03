@@ -80,25 +80,89 @@ const Home: NextPage<Props> = ({ user }) => {
         </div>
       </Section>
       <Section>
-      <div className="hero  bg-base-200">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <img src="https://placeimg.com/260/400/arch" className="max-w-sm rounded-lg shadow-2xl" />
-    <div>
-      <h1 className="text-5xl font-bold">Box Office News!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button className="btn btn-primary">Get Started</button>
-    </div>
-  </div>
-</div>
+        <div className="hero  bg-base-200">
+          <div className="hero-content flex-col lg:flex-row-reverse">
+            <img
+              src="https://placeimg.com/260/400/arch"
+              className="max-w-sm rounded-lg shadow-2xl"
+            />
+            <div>
+              <h1 className="text-5xl font-bold">Box Office News!</h1>
+              <p className="py-6">
+                Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                assumenda excepturi exercitationem quasi. In deleniti eaque aut
+                repudiandae et a id nisi.
+              </p>
+              <button className="btn btn-primary">Get Started</button>
+            </div>
+          </div>
+        </div>
       </Section>
-      <Section>
+      <Section title="Select your courses">
         <div className="flex flex-col w-full lg:flex-row">
-          <div className="grid flex-grow h-64 card bg-base-300 rounded-box place-items-center">
-            content
+          <div className="card card-compact w-96 bg-base-100 shadow-xl">
+            <figure>
+              <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">Shoes!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
           </div>
           <div className="divider lg:divider-horizontal">OR</div>
-          <div className="grid flex-grow h-64 card bg-base-300 rounded-box place-items-center">
-            content
+          <div className="card card-compact w-96 bg-base-100 shadow-xl">
+            <figure>
+              <img src="https://placeimg.com/400/225/tech" alt="Shoes" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">New movie is released!!</h2>
+              <p>Click the button to watch on Jetflix app.</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+      <Section title="Our students's stories">
+        <div className="grid grid-flow-col bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 grid-rows-2 grid-cols-3 gap-8">
+          <div className="transform scale-110 -rotate-6">
+            <img
+              className="rounded drop-shadow-2xl"
+              src="https://placeimg.com/240/240/tech"
+              loading="lazy"
+            />
+          </div>
+          <div className="col-start-3 transform scale-95 rotate-6 translate-x-2 translate-y-15">
+            <img
+              className="rounded drop-shadow-2xl"
+              src="https://placeimg.com/240/240/animals"
+              loading="lazy"
+            />
+          </div>
+          <div className="transform scale-110 rotate-6 translate-y-11">
+            <img
+              className="rounded drop-shadow-2xl"
+              src="https://placeimg.com/240/240/arch"
+              loading="lazy"
+            />
+          </div>
+          <div className="transform translate-y-12">
+            <img
+              className="rounded drop-shadow-2xl"
+              src="https://placeimg.com/240/240/nature"
+              loading="lazy"
+            />
+          </div>
+          <div className="row-start-1 col-start-2 col-span-2 transform translate-x-10 translate-y-4">
+            <img
+              className="rounded drop-shadow-2xl"
+              src="https://placeimg.com/480/240/people"
+              loading="lazy"
+            />
           </div>
         </div>
       </Section>
@@ -120,16 +184,16 @@ const Home: NextPage<Props> = ({ user }) => {
               </Link>
             </div>
             <div className="p-1 flex-1 mx-6 shadow-xl card bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl">
-                <div className="card-body">JLPT KANJI QUIZ N2</div>
+              <div className="card-body">JLPT KANJI QUIZ N2</div>
             </div>
             <div className="p-1 flex-1 mx-6 shadow-xl card bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl">
-                <div className="card-body">JLPT KANJI QUIZ N2</div>
+              <div className="card-body">JLPT KANJI QUIZ N2</div>
             </div>
           </div>
           <div className="stack">
             <div className="p-1 flex-1 mx-6 shadow-xl card bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl">
               <Link href="/kanji">
-              <a className="block p-6 bg-white sm:p-8 rounded-xl">
+                <a className="block p-6 bg-white sm:p-8 rounded-xl">
                   <div className="mt-8 sm:pr-8">
                     <h5 className="text-xl font-bold text-gray-900">
                       JLPT KANJI QUIZ N2
@@ -142,10 +206,10 @@ const Home: NextPage<Props> = ({ user }) => {
               </Link>
             </div>
             <div className="p-1 flex-1 mx-6 shadow-xl card bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl">
-                <div className="card-body">JLPT KANJI QUIZ N2</div>
+              <div className="card-body">JLPT KANJI QUIZ N2</div>
             </div>
             <div className="p-1 flex-1 mx-6 shadow-xl card bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl">
-                <div className="card-body">JLPT KANJI QUIZ N2</div>
+              <div className="card-body">JLPT KANJI QUIZ N2</div>
             </div>
           </div>
         </div>

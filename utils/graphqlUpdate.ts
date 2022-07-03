@@ -10,6 +10,7 @@ type variablesType = {
     level?: ILevel
     locales?: [string]
     first?: number
+    skip?: number
     orderBy?: string
     learner?: string
 }
@@ -90,6 +91,58 @@ export async function updateGrammarLearner(learner: string, grammarID: string, p
                 id: grammarID
             }
         }
+    )
+    return data
+}
+
+
+export async function getQuizesByPage(learner: string, level: ILevel,first: number, skip: number, preview: boolean) {
+    const data = await fetchAPI(`
+        query getQuizes($learner: ID!, $level: Level, $stage: Stage!, $first: Int!, $skip: Int!) {
+            quizzes(where: {learners_none: {id_not: $learner}, level: $level}, 
+                first: $first,
+                skip: $skip,
+                stage: $stage) {
+                id
+                question
+                answers {
+                    id
+                    answer
+                    isCorrect
+                    grammar {
+                        id
+                        japanese
+                        english
+                        use{
+                            html
+                        }
+                        sentences {
+                            japanese
+                            pronounce
+                            english
+                        }
+                    }
+                }
+            },
+            learner(where: {id: $learner}, stage: $stage){
+                name
+                email
+                image{
+                    url
+                }
+            }
+        }
+    `
+    ,{
+        preview,
+        variables: {
+            learner,
+            stage: preview ? 'DRAFT' : 'PUBLISHED',
+            level,
+            first,
+            skip
+        },
+    }
     )
     return data
 }
