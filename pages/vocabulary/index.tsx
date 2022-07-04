@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
-import {Hero} from '../components/hero/Hero'
-import {Section} from '../components/layout/Section'
-import {getUserProfile} from '../utils/graphcms'
-import {IUser} from '../types/user'
-import {LEANERID} from '../utils/constants'
+import {Hero} from '../../components/hero/Hero'
+import {Section} from '../../components/layout/Section'
+import {getUserProfile} from '../../utils/graphcms'
+import {IUser} from '../../types/user'
+import {LEANERID} from '../../utils/constants'
 
 type Props = {
   user: IUser
